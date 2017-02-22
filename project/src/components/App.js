@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <FlatButton label="Delete Me" primary={true} />
+        <MuiThemeProvider>
+          <FlatButton label="Delete Me" primary={true} />
+        </MuiThemeProvider>
       </div>
     );
   }
