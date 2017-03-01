@@ -4,16 +4,16 @@ import initialState from './initialState';
 export default function authReducer(state = initialState.auth, action) {
     switch (action.type) {
         case types.LOGIN_SUCCESS:
-            return {...state, authenticated: true};
+            return { authenticated: true, errorMessage: null };
 
         case types.LOGOUT:
-            return {...state, authenticated: false};
+            return { authenticated: false, errorMessage: null };
 
         case types.LOGIN_ERROR:
-            return {...state, error: action.errorMessage};
+            return Object.assign({}, state, { errorMessage: action.errorMessage });
 
         case types.CLEAN_LOGIN_ERROR:
-            return {...state, error: {}};
+            return Object.assign({}, state, { errorMessage: null });
 
         default:
             return state;

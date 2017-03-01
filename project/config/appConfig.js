@@ -1,0 +1,1 @@
+export const AuthServerURL = "http://authServerUrl.com";

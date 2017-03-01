@@ -1,4 +1,4 @@
-import NotificationServerApi from '../api/notificationServerApi';
+import AuthApi from '../api/authApi';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import * as types from './actionTypes';
 import {browserHistory} from 'react-router';
@@ -23,14 +23,14 @@ export function cleanLoginErrors() {
 export function loginUser(email, password) {
     return function (dispatch) {
         dispatch(beginAjaxCall());
-        return NotificationServerApi.loginUser(email, password).then(response => {
+        return AuthApi.loginUser(email, password).then(response => {
             dispatch(loginUserSuccess());
             localStorage.setItem('token', response.access_token);
             localStorage.setItem('role', response.user_role);
             browserHistory.push('/home');
         }).catch(error => {
             dispatch(ajaxCallError());
-            dispatch(loginError("Kullanıcı bilgileri yanlış"));
+            dispatch(loginError("Username or password is invalid."));
             throw(error);
         });
     };
